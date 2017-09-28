@@ -4,10 +4,15 @@ function SidebarReducer(state = {
 	open: true,
 	menus: [
 		{
-			name: 'Dummy Data',
+			name: 'Application',
 			menus: [
 				{
-					name: 'FakeDB',
+					name: 'Dashboard',
+					active: false,
+					url: '/'
+				},
+				{
+					name: 'Fake Database',
 					active: false,
 					url: '/modules/fakedb'
 				},

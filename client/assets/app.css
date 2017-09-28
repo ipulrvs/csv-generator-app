@@ -24,6 +24,10 @@ html, body {
 	border-top: 1px solid #F1F2F6;
 }
 
+.main {
+	overflow: hidden;
+}
+
 .content-fullwidth {
 	overflow: auto;
 }
