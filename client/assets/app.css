@@ -1,0 +1,201 @@
+/* begin Main Layout */
+html, body {
+	height: 100%; 
+	padding: 0px;
+	margin: 0px;
+	background: #FAFAFA;
+}
+
+.sidebar {
+	background: #252D30;
+	width: 256px;
+}
+
+.topbar {
+	background: #FFFFFF;
+	height: 50px;
+	width: 100%;
+}
+
+.footer {
+	background: #FFFFFF;
+	height: 50px;
+	width: 100%;
+	border-top: 1px solid #F1F2F6;
+}
+
+.content-fullwidth {
+	overflow: auto;
+}
+
+.content {
+	overflow: auto;
+	padding: 0px 36px;
+}
+
+.window {
+	height: 100%;
+}
+
+.hboxfix {
+	height: 100%;
+	width: 100%;
+}
+/* Mobile */
+
+.mobileView {
+	display: none !important;
+}
+
+@media only screen and (min-width : 240px) and (max-width : 640px) {
+    .sidebar {
+    	display: none;
+		}
+		.mobileView {
+			display: block !important;
+		}
+}
+/* end Main Layout */
+
+/* begin Theme Material-UI */
+/*
+	Base Color
+	.sidebar bg 252D30
+	.sidebar menu icon & hover F44336
+	.sidebar menu bg 313C40
+	.sidebar text FAFAFA
+	.sidebar active E53F33
+*/
+.topbarMain > div {
+	min-height: 50px !important;
+}
+
+.topbarMainSidebar > div {
+	min-height: 50px !important;
+	padding-left: 0px !important;
+}
+
+.topbarTitle {
+	font-size: 16px !important;
+}
+
+.topbarSpace {
+	flex: 1;
+}
+
+.sidebar > div {
+	width: 256px;
+	border-right: 0px !important;
+	background: #252D30;
+}
+
+.sidebar .content {
+	padding: 0px !important;
+}
+
+.sidebarMenu > div {
+	color: #FAFAFA;
+}
+
+.sidebarMenu > .menu {
+	background: #313C40;
+}
+
+.sidebarMenu .menu > .material-icons {
+	color: #F44336 !important;
+}
+
+.sidebarMenu .menu > div {
+	padding: 0px !important;
+}
+
+.sidebarMenu .menu > div > h3 {
+	color: #FAFAFA;
+}
+
+.sidebarMenu > .menu:hover {
+	background: #F44336;;
+}
+
+.sidebarMenu .menu:hover > .material-icons {
+	color: #FAFAFA !important;
+}
+
+.sidebarMenu > .menu.active {
+	background: #E53F33 !important;
+}
+
+.sidebarMenu .menu.active {
+	color: #FAFAFA !important;
+}
+
+.sidebarMenu .menu.active >.material-icons {
+	color: #FAFAFA !important;
+}
+
+.sidebarMenu .submenu {
+	background: #313C40;
+}
+
+.sidebarMenu .submenu .material-icons {
+	color: #FAFAFA !important;
+}
+
+.sidebarMenu .submenu > div {
+	padding: 0px !important;
+}
+
+.sidebarMenu .submenu > div > h3 {
+	font-size: 14px !important;
+	color: #FAFAFA;
+}
+
+.sidebarMenu > .submenu:hover {
+	background: #F44336;;
+}
+
+.sidebarMenu .submenu:hover > .material-icons {
+	color: #F44336 !important;
+}
+
+.sidebarMenu > .submenu.active {
+	background: #E53F33 !important;
+}
+
+.sidebarMenu .submenu.active {
+	color: #FAFAFA !important;
+}
+
+.sidebarMenu .submenu.active >.material-icons {
+	color: #F44336 !important;
+}
+
+.topbarSecondary {
+	box-shadow: none !important;
+	background: #FFFFFF !important;
+	color: #313C40 !important;
+}
+
+.topbarSecondary > .toolbar > button {
+	color: orange !important;
+}
+
+.topbarTool {
+	box-shadow: none !important;
+	background: #FAFAFA !important;
+	color: #313C40 !important;
+}
+
+.topbarTool > .toolbar {
+	min-height: 20px !important;
+}
+
+.topbarTool > .toolbar > button {
+	color: #313C40 !important;
+}
+
+.CardContent {
+	padding-bottom: 16px !important;
+}
+
+/* end Theme Material-UI */
