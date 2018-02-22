@@ -18,7 +18,7 @@ var config = {
 				exclude: /node_modules/,
 				loader: 'babel-loader',
 				query: {
-					plugins: ["transform-decorators-legacy", "transform-class-properties", "transform-object-rest-spread"],
+					plugins: ["transform-decorators-legacy", "transform-class-properties", "transform-object-rest-spread", "transform-decorators"],
 					presets: ['es2015', 'react']
 				}
 			}

@@ -1,0 +1,95 @@
+{
+  "name": "FakeDB",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "createdAt": {
+      "type": "date"
+    },
+    "updateAt": {
+      "type": "date"
+    },
+    "no": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "transactionDate": {
+      "type": "string"
+    },
+    "month": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "code2": {
+      "type": "string"
+    },
+    "code3": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "ein": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "postal": {
+      "type": "string"
+    },
+    "taxNumber": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "alphaCode": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

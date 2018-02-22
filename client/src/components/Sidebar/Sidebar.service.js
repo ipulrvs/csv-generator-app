@@ -7,7 +7,7 @@ function SidebarReducer(state = {
 			name: 'Application',
 			menus: [
 				{
-					name: 'Dashboard',
+					name: 'File Manager',
 					active: false,
 					url: '/'
 				},
@@ -52,25 +52,28 @@ function SidebarReducer(state = {
 					openSub: false,
 					submenus: [
 						{
+							url: '/modules/h2h/csv/fk',
 							name: 'FK'
 						},
 						{
+							url: '/modules/h2h/csv/fm',
 							name: 'FM'
 						},
 						{
+							url: '/modules/h2h/csv/lt',
 							name: 'LT'
 						},
 						{
+							url: '/modules/h2h/csv/rdkm',
 							name: 'RDKRDM'
 						},
 						{
+							url: '/modules/h2h/csv/vat',
 							name: 'VAT'
 						},
 						{
+							url: '/modules/h2h/csv/dkdm',
 							name: 'DKDM'
-						},
-						{
-							name: 'Cancel PM'
 						}
 					]
 				}
@@ -85,6 +88,7 @@ function SidebarReducer(state = {
 					openSub: false,
 					submenus: [
 						{
+							url: '/modules/eppt/runner/import',
 							name: 'Import Pasal'
 						},
 						{

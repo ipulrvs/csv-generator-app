@@ -34,5 +34,17 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "FakeDB": {
+    "dataSource": "postgres",
+    "public": true
+  },
+  "H2H": {
+    "dataSource": "postgres",
+    "public": true
+  },
+  "EPPT": {
+    "dataSource": "db",
+    "public": true
   }
 }

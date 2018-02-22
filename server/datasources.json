@@ -2,5 +2,15 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "postgres": {
+    "host": "127.0.0.1",
+    "port": 5432,
+    "url": "",
+    "database": "csv_generator",
+    "password": "12qwaszx",
+    "name": "postgres",
+    "user": "nebula",
+    "connector": "postgresql"
   }
 }

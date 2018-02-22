@@ -16,4 +16,5 @@
 .strong-pm
 coverage
 node_modules
-npm-debug.logclient/node_modules
+npm-debug.log
+client/node_modules

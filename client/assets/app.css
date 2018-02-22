@@ -174,13 +174,13 @@ html, body {
 	color: #F44336 !important;
 }
 
-.topbarSecondary {
+.topbarSecondary > header {
 	box-shadow: none !important;
 	background: #FFFFFF !important;
 	color: #313C40 !important;
 }
 
-.topbarSecondary > .toolbar > button {
+.topbarSecondary .toolbar > button {
 	color: orange !important;
 }
 
