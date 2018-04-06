@@ -1,5 +1,9 @@
 'use strict';
 
+var json2csv = require('json2csv');
+var path = require('path');
+var fs = require('fs')
+
 module.exports = function(Eppt) {
 
 	var Nightmare = require('nightmare')	
@@ -67,5 +71,765 @@ module.exports = function(Eppt) {
 				console.log("Result: "+ JSON.stringify(result));
 			});
 	}
+
+	Eppt.generateFinalManual = async (filename, size, delimiter, npwp_profile, cb) => {
+		var fakeDB = Eppt.app.models.FakeDB;
+		var dummies = await fakeDB.find({})
+		var generate = size;
+		var header = [
+			"Masa Pajak", 
+			"Tahun Pajak", 
+			"Pembetulan", 
+			"Nomor Bukti Potong", 
+			"NPWP", 
+			"NIK", 
+			"Nama", 
+			"Alamat", 
+			"Email", 
+			"Kode Pajak", 
+			"Tarif", 
+			"Golongan", 
+			"Jumlah Bruto", 
+			"NPWP Pemotong", 
+			"Tanggal Bukti Potong", 
+			"Gross Up", 
+			"Referensi"
+		]
+		var bigdata = [];
+		var counter = 0;
+
+		bigdata.push(header)
+
+		while(counter < generate){
+			var faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+			var fake  		= dummies[faker]
+			if(fake == null){
+			 	faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+				fake  		= dummies[faker]
+			}
+			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			var pembetulan 	= 0;
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bp 			= "1.4-"+masa+"."+tahun+"-"+bpr
+			var npwps 		= [
+				"719547416445000",
+				"000000000000000"
+			]
+			var npwpr 		= Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var npwp 		= npwps[npwpr];
+			var nik 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var nama   		= fake.name + "_" + bpr;
+			var alamat 		= fake.address + "_" + bpr;
+			var email 		= fake.email + "_" + bpr;
+			var kodePajaks  = ["21-401-1", "21-401-2", "21-402-1", "21-499-9"]
+			var kodePajakr  = Math.floor(Math.random() * (3 - 0 + 1) + 0);
+			var kodePajak 	= kodePajaks[kodePajakr]
+			var tarif		= 5
+			var golongan 	= ""
+			var bruto		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var npwpProfil	= npwp_profile
+			var mastTgl		= masa
+			if(mastTgl.split("").length == 1){
+				mastTgl = "0"+mastTgl
+			}
+			var tglBp		= "25/"+mastTgl+"/"+tahun
+			var grossup		= "N"
+			var ref 		= "generated"
+			var row = [
+				masa,
+				tahun,
+				pembetulan,
+				bp,
+				npwp,
+				nik,
+				nama,
+				alamat,
+				email,
+				kodePajak,
+				tarif,
+				golongan,
+				bruto,
+				npwpProfil,
+				tglBp,
+				grossup,
+				ref
+			]
+			bigdata.push(row)
+			console.log("[Counter] generate row number = ", counter);
+			counter++;
+		}
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var filecode = Math.floor(Math.random() * 1000000000000) + "";
+		var csvName = "Csv_Pasal_21_Final_Manual" + filecode + ".csv";
+		if(filename){
+			var csvName = "Csv_Pasal_21_Final_Manual" + filename + "_" + filecode + ".csv";
+		}
+		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
+		fs.writeFile(filesFolder, csv, function(err) {
+			console.log(["File Path = "], filesFolder);
+		});
+		return cb(null, "ok")
+	}
+	Eppt.remoteMethod('generateFinalManual', {
+		accepts: [
+			{arg: 'filename', type: 'string'},
+			{arg: 'size', type: 'integer'},
+			{arg: 'delimiter', type: 'string'},
+			{arg: 'npwp', type: 'string'}
+		],
+		returns: {arg: 'res', type: 'json'}
+	});
+
+	Eppt.generateFinalAuto = async (filename, size, delimiter, npwp_profile, cb) => {
+		var fakeDB = Eppt.app.models.FakeDB;
+		var dummies = await fakeDB.find({})
+		var generate = size;
+		var header = [
+			"Masa Pajak", 
+			"Tahun Pajak", 
+			"Pembetulan", 
+			"Nomor Bukti Potong", 
+			"NPWP", 
+			"NIK", 
+			"Nama", 
+			"Alamat", 
+			"Email", 
+			"Kode Pajak", 
+			"Jumlah Bruto", 
+			"Tarif",
+			"Jumlah PPh", 
+			"NPWP Pemotong", 
+			"Tanggal Bukti Potong", 
+			"Referensi"
+		]
+		var bigdata = [];
+		var counter = 0;
+
+		bigdata.push(header)
+
+		while(counter < generate){
+			var faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+			var fake  		= dummies[faker]
+			if(fake == null){
+			 	faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+				fake  		= dummies[faker]
+			}
+			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			var pembetulan 	= 0;
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bp 			= "1.4-"+masa+"."+tahun+"-"+bpr
+			var npwps 		= [
+				"719547416445000",
+				"000000000000000"
+			]
+			var npwpr 		= Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var npwp 		= npwps[npwpr];
+			var nik 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var nama   		= fake.name + "_" + bpr;
+			var alamat 		= fake.address + "_" + bpr;
+			var email 		= fake.email + "_" + bpr;
+			var kodePajaks  = ["21-401-1", "21-401-2", "21-402-1", "21-499-9"]
+			var kodePajakr  = Math.floor(Math.random() * (3 - 0 + 1) + 0);
+			var kodePajak 	= kodePajaks[kodePajakr]
+			var bruto		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var tarif		= 5
+			var pph			= Math.floor(Math.random() * (1000000000 - 1 + 1) + 1);
+			var npwpProfil	= npwp_profile
+			var mastTgl		= masa
+			if(mastTgl.split("").length == 1){
+				mastTgl = "0"+mastTgl
+			}
+			var tglBp		= "25/"+mastTgl+"/"+tahun
+			var ref 		= "generated"
+			var row = [
+				masa,
+				tahun,
+				pembetulan,
+				bp,
+				npwp,
+				nik,
+				nama,
+				alamat,
+				email,
+				kodePajak,
+				bruto,
+				tarif,
+				pph,
+				npwpProfil,
+				tglBp,
+				ref
+			]
+			bigdata.push(row)
+			console.log("[Counter] generate row number = ", counter);
+			counter++;
+		}
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var filecode = Math.floor(Math.random() * 1000000000000) + "";
+		var csvName = "Csv_Pasal_21_Final_Manual" + filecode + ".csv";
+		if(filename){
+			var csvName = "Csv_Pasal_21_Final_Manual" + filename + "_" + filecode + ".csv";
+		}
+		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
+		fs.writeFile(filesFolder, csv, function(err) {
+			console.log(["File Path = "], filesFolder);
+		});
+		return cb(null, "ok")
+	}
+	Eppt.remoteMethod('generateFinalAuto', {
+		accepts: [
+			{arg: 'filename', type: 'string'},
+			{arg: 'size', type: 'integer'},
+			{arg: 'delimiter', type: 'string'},
+			{arg: 'npwp', type: 'string'}
+		],
+		returns: {arg: 'res', type: 'json'}
+	});
+
+	Eppt.generateDaftarBiaya = async (filename, size, delimiter, npwp_profile, cb) => {
+		var fakeDB = Eppt.app.models.FakeDB;
+		var dummies = await fakeDB.find({})
+		var generate = size;
+		var header = [
+			"Tahun Pajak",
+			"Pembetulan",
+			"Gaji Upah",
+			"Biaya Transportasi",
+			"Biaya Penyusutan Amortisasi",
+			"Biaya Sewa",
+			"Biaya Bunga Pinjaman",
+			"Biaya Sehubungan dengan Jasa",
+			"Biaya Utang Tertagih",
+			"Biaya Royalti",
+			"Biaya Pemasaran",
+			"Biaya Lainya",
+			"Npwp Pemotong"
+		]
+		var bigdata = [];
+		var counter = 0;
+
+		bigdata.push(header)
+
+		while(counter < generate){
+			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			var pembetulan 	= 0;
+			var no1		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var no2		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var no3		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var no4		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var no5		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var no6		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var no7		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var no8		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var no9		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var no10		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var row = [
+				tahun,
+				pembetulan,
+				no1,
+				no2,
+				no3,
+				no4,
+				no5,
+				no6,
+				no7,
+				no8,
+				no9,
+				no10,
+				npwp_profile
+			]
+			bigdata.push(row)
+			console.log("[Counter] generate row number = ", counter);
+			counter++;
+		}
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var filecode = Math.floor(Math.random() * 1000000000000) + "";
+		var csvName = "Csv_Pasal_21_Daftar_Biaya" + filecode + ".csv";
+		if(filename){
+			var csvName = "Csv_Pasal_21_Daftar_Biaya" + filename + "_" + filecode + ".csv";
+		}
+		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
+		fs.writeFile(filesFolder, csv, function(err) {
+			console.log(["File Path = "], filesFolder);
+		});
+		return cb(null, "ok")
+	}
+	Eppt.remoteMethod('generateDaftarBiaya', {
+		accepts: [
+			{arg: 'filename', type: 'string'},
+			{arg: 'size', type: 'integer'},
+			{arg: 'delimiter', type: 'string'},
+			{arg: 'npwp', type: 'string'}
+		],
+		returns: {arg: 'res', type: 'json'}
+	});
+
+	Eppt.generateSsp = async (filename, size, delimiter, npwp_profile, cb) => {
+		var fakeDB = Eppt.app.models.FakeDB;
+		var dummies = await fakeDB.find({})
+		var generate = size;
+		var header = [
+			"Masa Pajak",
+			"Tahun Pajak",
+			"Pembetulan",
+			"NTPN",
+			"Tanggal SSP",
+			"Jumlah SSP",
+			"KAP",
+			"KJS",
+			"Kode Keterangan",
+			"Npwp Pemotong"
+		]
+		var bigdata = [];
+		var counter = 0;
+
+		bigdata.push(header)
+
+		while(counter < generate){
+			var faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+			var fake  		= dummies[faker]
+			if(fake == null){
+			 	faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+				fake  		= dummies[faker]
+			}
+			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			var pembetulan 	= 0;
+			var ntpns 		= [
+				"1111111111111111",
+				"2222222222222222",
+				"3333333333333333",
+				"4444444444444444",
+				"5555555555555555",
+			]
+			var nptnr 		= Math.floor(Math.random() * (4 - 0 + 1) + 0);
+			var ntpn 		= ntpns[nptnr];
+			var tgl 		= fake.date
+			var jumlah		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var kaps 		= [
+				"411121",
+				"411127"
+			]
+			var kapr 		= Math.floor(Math.random() * (1 - 0 + 1) + 0) + "";
+			var kap			= kaps[kapr]
+			var kjss		= [
+				"101",
+				"104",
+				"401",
+				"402"
+			]
+			var kjsr		= Math.floor(Math.random() * (3 - 0 + 1) + 0) + "";
+			var kjs			= kjss[kjsr]
+			var kjss		= [
+				"101",
+				"104",
+				"401",
+				"402"
+			]
+			var kodes 		= [
+				"0",
+				"1",
+				"2"
+			]
+			var koder		= Math.floor(Math.random() * (2 - 0 + 1) + 0) + "";
+			var kode		= kodes[koder]
+			var row = [
+				masa,
+				tahun,
+				pembetulan,
+				ntpn,
+				tgl,
+				jumlah,
+				kap,
+				kjs,
+				kode,
+				npwp_profile
+			]
+			bigdata.push(row)
+			console.log("[Counter] generate row number = ", counter);
+			counter++;
+		}
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var filecode = Math.floor(Math.random() * 1000000000000) + "";
+		var csvName = "Csv_Pasal_21_Ssp" + filecode + ".csv";
+		if(filename){
+			var csvName = "Csv_Pasal_21_Ssp" + filename + "_" + filecode + ".csv";
+		}
+		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
+		fs.writeFile(filesFolder, csv, function(err) {
+			console.log(["File Path = "], filesFolder);
+		});
+		return cb(null, "ok")
+	}
+	Eppt.remoteMethod('generateSsp', {
+		accepts: [
+			{arg: 'filename', type: 'string'},
+			{arg: 'size', type: 'integer'},
+			{arg: 'delimiter', type: 'string'},
+			{arg: 'npwp', type: 'string'}
+		],
+		returns: {arg: 'res', type: 'json'}
+	});
+
+	Eppt.generateSatuMasa = async (filename, size, delimiter, npwp_profile, cb) => {
+		var fakeDB = Eppt.app.models.FakeDB;
+		var dummies = await fakeDB.find({})
+		var generate = size;
+		var header = [
+			"Masa Pajak",
+			"Tahun Pajak",
+			"Pembetulan",
+			"NPWP",
+			"Nama",
+			"WP Luar Negeri",
+			"Kode Negara",
+			"Kode Pajak",
+			"Jumlah Bruto",
+			"Jumlah PPh",
+			"NPWP Pemotong"
+		]
+		var bigdata = [];
+		var counter = 0;
+
+		bigdata.push(header)
+
+		while(counter < generate){
+			var faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+			var fake  		= dummies[faker]
+			if(fake == null){
+			 	faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+				fake  		= dummies[faker]
+			}
+			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			var pembetulan 	= 0;
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var npwps 		= [
+				"719547416445000",
+				"000000000000000"
+			]
+			var npwpr 		= Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var npwp 		= npwps[npwpr];
+			var nama   		= fake.name + "_" + bpr;
+			var wpLuarNegeri= "N"
+			var kodeNegara	= ""
+			var kodePajaks	= [
+				"21-100-01",
+				"21-100-01"
+			]
+			var kodePajakr = Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var kodePajak   = kodePajaks[kodePajakr]
+			var bruto		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var pph			= Math.floor(Math.random() * (1000000000 - 1 + 1) + 1);
+			var row = [
+				masa,
+				tahun,
+				pembetulan,
+				npwp,
+				nama,
+				wpLuarNegeri,
+				kodeNegara,
+				kodePajak,
+				bruto,
+				pph,
+				npwp_profile
+			]
+			bigdata.push(row)
+			console.log("[Counter] generate row number = ", counter);
+			counter++;
+		}
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var filecode = Math.floor(Math.random() * 1000000000000) + "";
+		var csvName = "Csv_Pasal_21_Satu_Masa" + filecode + ".csv";
+		if(filename){
+			var csvName = "Csv_Pasal_21_Satu_Masa" + filename + "_" + filecode + ".csv";
+		}
+		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
+		fs.writeFile(filesFolder, csv, function(err) {
+			console.log(["File Path = "], filesFolder);
+		});
+		return cb(null, "ok")
+	}
+	Eppt.remoteMethod('generateSatuMasa', {
+		accepts: [
+			{arg: 'filename', type: 'string'},
+			{arg: 'size', type: 'integer'},
+			{arg: 'delimiter', type: 'string'},
+			{arg: 'npwp', type: 'string'}
+		],
+		returns: {arg: 'res', type: 'json'}
+	});
+
+	Eppt.generateTidakFinalManual = async (filename, size, delimiter, npwp_profile, cb) => {
+		var fakeDB = Eppt.app.models.FakeDB;
+		var dummies = await fakeDB.find({})
+		var generate = size;
+		var header = [
+			"Masa Pajak",
+			"Tahun Pajak",
+			"Pembetulan",
+			"Nomor Bukti Potong",
+			"NPWP",
+			"NIK",
+			"Nama",
+			"Alamat",
+			"Email",
+			"WP Luar Negeri",
+			"Kode Negara",
+			"Kode Pajak",
+			"Jumlah Bruto",
+			"Jumlah DPP",
+			"Tarif",
+			"Jumlah PPh",
+			"NPWP Pemotong",
+			"Tanggal Bukti Potong",
+			"Referensi"
+		]
+		var bigdata = [];
+		var counter = 0;
+
+		bigdata.push(header)
+
+		while(counter < generate){
+			var faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+			var fake  		= dummies[faker]
+			if(fake == null){
+			 	faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+				fake  		= dummies[faker]
+			}
+			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			var pembetulan 	= 0;
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bp 			= "1.3-"+masa+"."+tahun+"-"+bpr
+			var npwps 		= [
+				"719547416445000",
+				"000000000000000"
+			]
+			var npwpr 		= Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var npwp 		= npwps[npwpr];
+			var nik 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var nama   		= fake.name + "_" + bpr;
+			var alamat 		= fake.address + "_" + bpr;
+			var email 		= fake.email + "_" + bpr;
+			var wpLuarNegeri= "N"
+			var kodeNegara  = ""
+			var kodePajaks  = [
+				"21-100-3",
+				"21-100-4",
+				"21-100-5",
+				"21-100-6",
+				"21-100-7",
+				"21-100-8",
+				"21-100-9",
+				"21-100-10",
+				"21-100-11",
+				"21-100-12",
+				"21-100-13",
+				"21-100-99",
+				"27-100-99",
+			]
+			var kodePajakr  = Math.floor(Math.random() * (12 - 0 + 1) + 0);
+			var kodePajak 	= kodePajaks[kodePajakr]
+			var bruto		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var dpp			= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var tarif		= 5
+			var pph			= Math.floor(Math.random() * (1000000000 - 1 + 1) + 1);
+			var npwpProfil	= npwp_profile
+			var mastTgl		= masa
+			if(mastTgl.split("").length == 1){
+				mastTgl = "0"+mastTgl
+			}
+			var tglBp		= "25/"+mastTgl+"/"+tahun
+			var ref 		= "generated"
+			var row = [
+				masa,
+				tahun,
+				pembetulan,
+				bp,
+				npwp,
+				nik,
+				nama,
+				alamat,
+				email,
+				wpLuarNegeri,
+				kodeNegara,
+				kodePajak,
+				bruto,
+				dpp,
+				tarif,
+				pph,
+				npwpProfil,
+				tglBp,
+				ref
+			]
+			bigdata.push(row)
+			console.log("[Counter] generate row number = ", counter);
+			counter++;
+		}
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var filecode = Math.floor(Math.random() * 1000000000000) + "";
+		var csvName = "Csv_Pasal_21_Tidak_Final_Manual" + filecode + ".csv";
+		if(filename){
+			var csvName = "Csv_Pasal_21_Tidak_Final_Manual" + filename + "_" + filecode + ".csv";
+		}
+		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
+		fs.writeFile(filesFolder, csv, function(err) {
+			console.log(["File Path = "], filesFolder);
+		});
+		return cb(null, "ok")
+	}
+	Eppt.remoteMethod('generateTidakFinalManual', {
+		accepts: [
+			{arg: 'filename', type: 'string'},
+			{arg: 'size', type: 'integer'},
+			{arg: 'delimiter', type: 'string'},
+			{arg: 'npwp', type: 'string'}
+		],
+		returns: {arg: 'res', type: 'json'}
+	});
+
+
+	Eppt.generateTidakFinalAuto = async (filename, size, delimiter, npwp_profile, cb) => {
+		var fakeDB = Eppt.app.models.FakeDB;
+		var dummies = await fakeDB.find({})
+		var generate = size;
+		var header = [
+			"Masa Pajak",
+			"Tahun Pajak",
+			"Pembetulan",
+			"Nomor Bukti Potong",
+			"NPWP",
+			"NIK",
+			"Nama",
+			"Alamat",
+			"Email",
+			"WP Luar Negeri",
+			"Kode Negara",
+			"Kode Pajak",
+			"Tipe Penghasilan", 
+			"Dipotong",
+			"Cara Pembayaran",
+			"Status PTKP",
+			"Jumlah Tanggungan",
+			"Jumlah Hari Kerja",
+			"Jumlah Bruto",
+			"NPWP Pemotong",
+			"Tanggal Bukti Potong",
+			"Gross Up",
+			"Referensi"
+		]
+		var bigdata = [];
+		var counter = 0;
+
+		bigdata.push(header)
+
+		while(counter < generate){
+			var faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+			var fake  		= dummies[faker]
+			if(fake == null){
+			 	faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+				fake  		= dummies[faker]
+			}
+			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			var pembetulan 	= 0;
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bp 			= "1.3-"+masa+"."+tahun+"-"+bpr
+			var npwps 		= [
+				"719547416445000",
+				"000000000000000"
+			]
+			var npwpr 		= Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var npwp 		= npwps[npwpr];
+			var nik 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var nama   		= fake.name + "_" + bpr;
+			var alamat 		= fake.address + "_" + bpr;
+			var email 		= fake.email + "_" + bpr;
+			var wpLuarNegeri= "N"
+			var kodeNegara  = ""
+			var kodePajaks  = [
+				"21-100-3",
+				"21-100-4",
+				"21-100-5",
+				"21-100-6",
+				"21-100-7",
+				"21-100-8",
+				"21-100-9",
+				"21-100-10",
+				"21-100-11",
+				"21-100-12",
+				"21-100-13",
+				"21-100-99",
+				"27-100-99",
+			]
+			var kodePajakr  = Math.floor(Math.random() * (12 - 0 + 1) + 0);
+			var kodePajak 	= kodePajaks[kodePajakr]
+			var tipeP		= ""
+			var dipotong	= ""
+			var caraBayar	= "B"
+			var ptkp		= "K"
+			var jtangungan  = "1"
+			var jharikerja  = "30"
+			var bruto		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var npwpProfil	= npwp_profile
+			var mastTgl		= masa
+			if(mastTgl.split("").length == 1){
+				mastTgl = "0"+mastTgl
+			}
+			var tglBp		= "25/"+mastTgl+"/"+tahun
+			var grossup		= "Y"
+			var ref 		= "generated"
+			var row = [
+				masa,
+				tahun,
+				pembetulan,
+				bp,
+				npwp,
+				nik,
+				nama,
+				alamat,
+				email,
+				wpLuarNegeri,
+				kodeNegara,
+				kodePajak,
+				tipeP,
+				dipotong,
+				caraBayar,
+				ptkp,
+				jtangungan,
+				jharikerja,
+				bruto,
+				npwpProfil,
+				tglBp,
+				grossup,
+				ref
+			]
+			bigdata.push(row)
+			console.log("[Counter] generate row number = ", counter);
+			counter++;
+		}
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var filecode = Math.floor(Math.random() * 1000000000000) + "";
+		var csvName = "Csv_Pasal_21_Tidak_Final_Auto" + filecode + ".csv";
+		if(filename){
+			var csvName = "Csv_Pasal_21_Tidak_Final_Auto" + filename + "_" + filecode + ".csv";
+		}
+		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
+		fs.writeFile(filesFolder, csv, function(err) {
+			console.log(["File Path = "], filesFolder);
+		});
+		return cb(null, "ok")
+	}
+	Eppt.remoteMethod('generateTidakFinalAuto', {
+		accepts: [
+			{arg: 'filename', type: 'string'},
+			{arg: 'size', type: 'integer'},
+			{arg: 'delimiter', type: 'string'},
+			{arg: 'npwp', type: 'string'}
+		],
+		returns: {arg: 'res', type: 'json'}
+	});
 
 };

@@ -47,6 +47,49 @@ function SidebarReducer(state = {
 					]
 				},
 				{
+					name: 'EPPT v2',
+					active: false,
+					openSub: false,
+					submenus: [
+						{
+							url : '/modules/epptv2/csv/tidak_final_manual',
+							name: 'Pasal 21 Tidak Final Manual'
+						},
+						{
+							url : '/modules/epptv2/csv/tidak_final_auto',
+							name: 'Pasal 21 Tidak Final Auto'
+						},
+						{
+							url : '/modules/epptv2/csv/final_manual',
+							name: 'Pasal 21 Final Manual'
+						},
+						{
+							url : '/modules/epptv2/csv/final_auto',
+							name: 'Pasal 21 Final Auto'
+						},
+						{
+							url : '/',
+							name: 'Pasal 21 A1'
+						},
+						{
+							url : '/',
+							name: 'Pasal 21 A2'
+						},
+						{
+							url : '/modules/epptv2/csv/satu_masa',
+							name: 'Pasal 21 Satu Masa'
+						},
+						{
+							url : '/modules/epptv2/csv/ssp',
+							name: 'Pasal 21 SSP'
+						},
+						{
+							url : '/modules/epptv2/csv/daftar_biaya',
+							name: 'Pasal 21 Daftar Biaya'
+						},
+					]
+				},
+				{
 					name: 'H2H',
 					active: false,
 					openSub: false,

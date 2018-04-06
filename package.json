@@ -4,7 +4,7 @@
   "main": "server/server.js",
   "scripts": {
     "lint": "eslint .",
-    "start": "node .",
+    "start": "node --max-old-space-size=4096 .",
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {

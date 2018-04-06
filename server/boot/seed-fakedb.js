@@ -8,7 +8,7 @@ module.exports = function(app) {
 	var ds = app.dataSources.postgres;
 
 	console.log(["Models"], "FakeDB")
-  var FakeDB = app.models.FakeDB;
+  	var FakeDB = app.models.FakeDB;
 	FakeDB.sharedClass.methods().forEach(function(method) {
 		console.log(["Method"], method.name)
 		if(method.name == "create" || method.name == "find" || method.name == "files"){
@@ -29,10 +29,10 @@ module.exports = function(app) {
 
 	var EPPT = app.models.EPPT;
 	EPPT.sharedClass.methods().forEach(function(method) {
-		if(method.name == "import"){
+		if(method.name == "import" || method.name == "generateFinalManual"){
 			// Expose Method API
 		} else {
-			EPPT.disableRemoteMethodByName(method.name, method.isStatic);
+			// EPPT.disableRemoteMethodByName(method.name, method.isStatic);
 		}
 	});
 
