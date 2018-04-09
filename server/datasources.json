@@ -12,5 +12,25 @@
     "name": "postgres",
     "user": "nebula",
     "connector": "postgresql"
+  },
+  "mysql": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "url": "",
+    "database": "csv_generator",
+    "password": "",
+    "name": "mysql",
+    "user": "root",
+    "connector": "mysql"
+  },
+  "mysqlw": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "url": "",
+    "database": "csv_generator",
+    "password": "",
+    "name": "mysqlw",
+    "user": "root",
+    "connector": "mysql"
   }
 }

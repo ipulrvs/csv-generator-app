@@ -36,11 +36,11 @@
     "public": false
   },
   "FakeDB": {
-    "dataSource": "postgres",
+    "dataSource": "mysql",
     "public": true
   },
   "H2H": {
-    "dataSource": "postgres",
+    "dataSource": "mysql",
     "public": true
   },
   "EPPT": {
