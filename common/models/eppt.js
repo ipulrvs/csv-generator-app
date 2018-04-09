@@ -690,7 +690,6 @@ module.exports = function(Eppt) {
 		returns: {arg: 'res', type: 'json'}
 	});
 
-
 	Eppt.generateTidakFinalAuto = async (filename, size, delimiter, npwp_profile, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
@@ -823,6 +822,425 @@ module.exports = function(Eppt) {
 		return cb(null, "ok")
 	}
 	Eppt.remoteMethod('generateTidakFinalAuto', {
+		accepts: [
+			{arg: 'filename', type: 'string'},
+			{arg: 'size', type: 'integer'},
+			{arg: 'delimiter', type: 'string'},
+			{arg: 'npwp', type: 'string'}
+		],
+		returns: {arg: 'res', type: 'json'}
+	});
+
+	Eppt.generateA2 = async (filename, size, delimiter, npwp_profile, cb) => {
+		var fakeDB = Eppt.app.models.FakeDB;
+		var dummies = await fakeDB.find({})
+		var generate = size;
+		var header = [
+			"Masa Pajak",
+			"Tahun Pajak",
+			"Pembetulan",
+			"Nomor Bukti Potong",
+			"Masa Perolehan Awal",
+			"Masa Perolehan Akhir",
+			"NPWP",
+			"NIP",
+			"NIK",
+			"Nama",
+			"Pangkat",
+			"Golongan",
+			"Alamat",
+			"Email",
+			"Jenis Kelamin",
+			"Status PTKP",
+			"Jumlah Tanggungan",
+			"Nama Jabatan",
+			"Kode Pajak",
+			"Jumlah 1",
+			"Jumlah 2",
+			"Jumlah 3",
+			"Jumlah 4",
+			"Jumlah 5",
+			"Jumlah 6",
+			"Jumlah 7",
+			"Jumlah 8",
+			"Jumlah 9",
+			"Jumlah 10",
+			"Jumlah 11",
+			"Jumlah 12",
+			"Jumlah 13",
+			"Jumlah 14",
+			"Jumlah 15",
+			"Jumlah 16",
+			"Jumlah 17",
+			"Jumlah 18",
+			"Jumlah 19",
+			"Jumlah 20",
+			"Jumlah 21",
+			"Jumlah 22",
+			"Jumlah 23",
+			"Jumlah 23a",
+			"Jumlah 23b",
+			"Status Pindah",
+			"Npwp Pemotong",
+			"Tanggal Bukti Potong",
+			"Referensi"
+		]
+		var bigdata = [];
+		var counter = 0;
+
+		bigdata.push(header)
+
+		while(counter < generate){
+			var faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+			var fake  		= dummies[faker]
+			if(fake == null){
+			 	faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+				fake  		= dummies[faker]
+			}
+			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			var pembetulan 	= 0;
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bp 			= "1.2-"+masa+"."+tahun+"-"+bpr
+			var awal 		= "1"
+			var akhir		= "12"
+			var npwps 		= [
+				"719547416445000",
+				"000000000000000"
+			]
+			var npwpr 		= Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var npwp 		= npwps[npwpr];
+			var nip 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var nik 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var nama   		= fake.name + "_" + bpr;
+			var golongan	= ""
+			var pangkat		= ""
+			var alamat 		= fake.address + "_" + bpr;
+			var email 		= fake.email + "_" + bpr;
+			var kelamins	= ["L", "P"]
+			var kelaminr	=  Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var kelamin		= kelamins[kelaminr];
+			var ptkps		= ["TK", "K", "K/I", "HB"]
+			var ptkpr		= Math.floor(Math.random() * (3 - 0 + 1) + 0);
+			var ptkp		= ptkps[ptkpr]
+			var tanggungans = ["0", "1", "2", "3"]
+			var tanggunganr = Math.floor(Math.random() * (3 - 0 + 1) + 0);
+			var tanggungan  = tanggungans[tanggunganr]
+			var jabatan     = "Pegawai"
+			var kodePajaks  = [
+				"21-100-01",
+				"21-100-02"
+			]
+			var kodePajakr  = Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var kodePajak   = kodePajaks[kodePajakr]
+			var jumlah1		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah2		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah3		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah4		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah5		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah6		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah7		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah8		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah9		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah10		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah11		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah12		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah13		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah14		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah15		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah16		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah17		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah18		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah19		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah20		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah21		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah22		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah23		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah23a		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah23b		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var pindah      = ""
+			var npwpProfil	= npwp_profile
+			var mastTgl		= masa
+			if(mastTgl.split("").length == 1){
+				mastTgl = "0"+mastTgl
+			}
+			var tglBp		= "25/"+mastTgl+"/"+tahun
+			var ref 		= "generated"
+			var row = [
+				masa,
+				tahun,
+				pembetulan, 
+				bp,
+				awal,
+				akhir,
+				npwp,
+				nip,
+				nik,
+				nama,
+				pangkat,
+				golongan, 
+				alamat,
+				email,
+				kelamin,
+				ptkp,
+				tanggungan,
+				jabatan,
+				kodePajak,
+				jumlah1,
+				jumlah2,
+				jumlah3,
+				jumlah4,
+				jumlah5,
+				jumlah6,
+				jumlah7,
+				jumlah8,
+				jumlah9,
+				jumlah10,
+				jumlah11,
+				jumlah12,
+				jumlah13,
+				jumlah14,
+				jumlah15,
+				jumlah16,
+				jumlah17,
+				jumlah18,
+				jumlah19,
+				jumlah20,
+				jumlah21,
+				jumlah22,
+				jumlah23,
+				jumlah23a,
+				jumlah23b,
+				pindah,
+				npwpProfil,
+				tglBp,
+				ref
+			]
+			bigdata.push(row)
+			console.log("[Counter] generate row number = ", counter);
+			counter++;
+		}
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var filecode = Math.floor(Math.random() * 1000000000000) + "";
+		var csvName = "Csv_Pasal_21_A2" + filecode + ".csv";
+		if(filename){
+			var csvName = "Csv_Pasal_21_A2" + filename + "_" + filecode + ".csv";
+		}
+		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
+		fs.writeFile(filesFolder, csv, function(err) {
+			console.log(["File Path = "], filesFolder);
+		});
+		return cb(null, "ok")
+	}
+	Eppt.remoteMethod('generateA2', {
+		accepts: [
+			{arg: 'filename', type: 'string'},
+			{arg: 'size', type: 'integer'},
+			{arg: 'delimiter', type: 'string'},
+			{arg: 'npwp', type: 'string'}
+		],
+		returns: {arg: 'res', type: 'json'}
+	});
+
+	Eppt.generateA1 = async (filename, size, delimiter, npwp_profile, cb) => {
+		var fakeDB = Eppt.app.models.FakeDB;
+		var dummies = await fakeDB.find({})
+		var generate = size;
+		var header = [
+			"Masa Pajak",
+			"Tahun Pajak",
+			"Pembetulan",
+			"Nomor Bukti Potong",
+			"Masa Perolehan Awal",
+			"Masa Perolehan Akhir",
+			"NPWP",
+			"NIK",
+			"Nama",
+			"Alamat",
+			"Email",
+			"Jenis Kelamin",
+			"Status PTKP",
+			"Jumlah Tanggungan",
+			"Nama Jabatan",
+			"WP Luar Negeri",
+			"Kode Negara",
+			"Kode Pajak",
+			"Jumlah 1",
+			"Jumlah 2",
+			"Jumlah 3",
+			"Jumlah 4",
+			"Jumlah 5",
+			"Jumlah 6",
+			"Jumlah 7",
+			"Jumlah 8",
+			"Jumlah 9",
+			"Jumlah 10",
+			"Jumlah 11",
+			"Jumlah 12",
+			"Jumlah 13",
+			"Jumlah 14",
+			"Jumlah 15",
+			"Jumlah 16",
+			"Jumlah 17",
+			"Jumlah 18",
+			"Jumlah 19",
+			"Jumlah 20",
+			"Status Pindah",
+			"Nama Pemotong",
+			"NPWP Pemotong",
+			"Tanggal Bukti Potong",
+			"Calculate Otomatis",
+			"Referensi"
+		]
+		var bigdata = [];
+		var counter = 0;
+
+		bigdata.push(header)
+
+		while(counter < generate){
+			var faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+			var fake  		= dummies[faker]
+			if(fake == null){
+			 	faker 		= Math.floor(Math.random() * (dummies.length - 0 + 1) + 0);
+				fake  		= dummies[faker]
+			}
+			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			var pembetulan 	= 0;
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bp 			= "1.2-"+masa+"."+tahun+"-"+bpr
+			var awal 		= "1"
+			var akhir		= "12"
+			var npwps 		= [
+				"719547416445000",
+				"000000000000000"
+			]
+			var npwpr 		= Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var npwp 		= npwps[npwpr];
+			var nip 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var nik 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var nama   		= fake.name + "_" + bpr;
+			var golongan	= ""
+			var pangkat		= ""
+			var alamat 		= fake.address + "_" + bpr;
+			var email 		= fake.email + "_" + bpr;
+			var kelamins	= ["L", "P"]
+			var kelaminr	=  Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var kelamin		= kelamins[kelaminr];
+			var ptkps		= ["TK", "K", "K/I", "HB"]
+			var ptkpr		= Math.floor(Math.random() * (3 - 0 + 1) + 0);
+			var ptkp		= ptkps[ptkpr]
+			var tanggungans = ["0", "1", "2", "3"]
+			var tanggunganr = Math.floor(Math.random() * (3 - 0 + 1) + 0);
+			var tanggungan  = tanggungans[tanggunganr]
+			var jabatan     = "Pegawai"
+			var kodePajaks  = [
+				"21-100-01",
+				"21-100-02"
+			]
+			var kodePajakr  = Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var kodePajak   = kodePajaks[kodePajakr]
+			var jumlah1		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah2		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah3		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah4		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah5		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah6		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah7		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah8		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah9		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah10		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah11		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah12		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah13		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah14		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah15		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah16		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah17		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah18		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah19		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah20		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah21		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah22		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah23		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah23a		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var jumlah23b		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
+			var pindah      = ""
+			var npwpProfil	= npwp_profile
+			var mastTgl		= masa
+			var kodeNegara  = ""
+			var calculateOtomatis = "N"
+			var jabatan = ""
+			var kodeNegara = ""
+			var wpLuarNegeri = ""
+			if(mastTgl.split("").length == 1){
+				mastTgl = "0"+mastTgl
+			}
+			var tglBp		= "25/"+mastTgl+"/"+tahun
+			var ref 		= "generated"
+			var row = [
+				masa,
+				tahun,
+				pembetulan,
+				bp,
+				awal,
+				akhir,
+				npwp,
+				nik,
+				nama,
+				alamat,
+				email,
+				kelamin,
+				ptkp,
+				tanggungan,
+				jabatan,
+				wpLuarNegeri,
+				kodeNegara,
+				kodePajak,
+				jumlah1,
+				jumlah2,
+				jumlah3,
+				jumlah4,
+				jumlah5,
+				jumlah6,
+				jumlah7,
+				jumlah8,
+				jumlah9,
+				jumlah10,
+				jumlah11,
+				jumlah12,
+				jumlah13,
+				jumlah14,
+				jumlah15,
+				jumlah16,
+				jumlah17,
+				jumlah18,
+				jumlah19,
+				jumlah20,
+				pindah,
+				nama,
+				npwpProfil,
+				tglBp,
+				calculateOtomatis,
+				ref
+			]
+			bigdata.push(row)
+			console.log("[Counter] generate row number = ", counter);
+			counter++;
+		}
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var filecode = Math.floor(Math.random() * 1000000000000) + "";
+		var csvName = "Csv_Pasal_21_A2" + filecode + ".csv";
+		if(filename){
+			var csvName = "Csv_Pasal_21_A2" + filename + "_" + filecode + ".csv";
+		}
+		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
+		fs.writeFile(filesFolder, csv, function(err) {
+			console.log(["File Path = "], filesFolder);
+		});
+		return cb(null, "ok")
+	}
+	Eppt.remoteMethod('generateA1', {
 		accepts: [
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},

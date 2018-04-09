@@ -37,46 +37,46 @@ module.exports = async function(app) {
 	});
 
 	// MIGRATE automigrate | autoupdate
-	ds.automigrate("FakeDB", function (err, result) {
-		console.log(["Migrate Table"], "Migrate Table FakeDB")
-		console.log(["Executing Seed"], "Initialize Seed FakeDB")
-		var seedFakeDBPATH = path.join(__dirname, "seed-fakedb.data.json")
-		console.log(["Finding FakeDB Seed"], seedFakeDBPATH)
-		var seedFakeDB = require(seedFakeDBPATH)
-		console.log(["FakeDB Seed Size"], seedFakeDB.length)
-		console.log(["Begin Process Seed Migration Fake DB"])
-		seedFakeDB.map(function (data, dataIndex){
-				FakeDB.create({
-					"createdAt": new Date(),
-					"updateAt": new Date(),
-					"no": dataIndex,
-					"name": data.name,
-					"firstName": data.firstName,
-					"lastName": data.lastName,
-					"gender": data.gender,
-					"email": data.email,
-					"address": data.address,
-					"city": data.city,
-					"transactionDate": data.transactionDate,
-					"month": data.month,
-					"year": data.year,
-					"code": data.code,
-					"code2": data.code2,
-					"code3": data.code3,
-					"price": data.price,
-					"phone": data.phone,
-					"state": data.state,
-					"ein": data.ein,
-					"street": data.street,
-					"country": data.country,
-					"postal": data.postal,
-					"taxNumber": data.taxNumber,
-					"company": data.company,
-					"alphaCode": data.alphaCode,
-					"date": data.date
-			}, function (err, done){
-			})
-		});
-		console.log(["Complete Process Seed Migration Fake DB"])
-	});
+	// ds.automigrate("FakeDB", function (err, result) {
+	// 	console.log(["Migrate Table"], "Migrate Table FakeDB")
+	// 	console.log(["Executing Seed"], "Initialize Seed FakeDB")
+	// 	var seedFakeDBPATH = path.join(__dirname, "seed-fakedb.data.json")
+	// 	console.log(["Finding FakeDB Seed"], seedFakeDBPATH)
+	// 	var seedFakeDB = require(seedFakeDBPATH)
+	// 	console.log(["FakeDB Seed Size"], seedFakeDB.length)
+	// 	console.log(["Begin Process Seed Migration Fake DB"])
+	// 	seedFakeDB.map(function (data, dataIndex){
+	// 			FakeDB.create({
+	// 				"createdAt": new Date(),
+	// 				"updateAt": new Date(),
+	// 				"no": dataIndex,
+	// 				"name": data.name,
+	// 				"firstName": data.firstName,
+	// 				"lastName": data.lastName,
+	// 				"gender": data.gender,
+	// 				"email": data.email,
+	// 				"address": data.address,
+	// 				"city": data.city,
+	// 				"transactionDate": data.transactionDate,
+	// 				"month": data.month,
+	// 				"year": data.year,
+	// 				"code": data.code,
+	// 				"code2": data.code2,
+	// 				"code3": data.code3,
+	// 				"price": data.price,
+	// 				"phone": data.phone,
+	// 				"state": data.state,
+	// 				"ein": data.ein,
+	// 				"street": data.street,
+	// 				"country": data.country,
+	// 				"postal": data.postal,
+	// 				"taxNumber": data.taxNumber,
+	// 				"company": data.company,
+	// 				"alphaCode": data.alphaCode,
+	// 				"date": data.date
+	// 		}, function (err, done){
+	// 		})
+	// 	});
+	// 	console.log(["Complete Process Seed Migration Fake DB"])
+	// });
 };

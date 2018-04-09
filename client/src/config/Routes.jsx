@@ -27,7 +27,8 @@ import EPPTv2Ssp from './../routes/EPPTv2Imports/EPPTv2Ssp.jsx'
 import EPPTv2SatuMasa from './../routes/EPPTv2Imports/EPPTv2SatuMasa.jsx'
 import EPPTv2TidakFinalManual from './../routes/EPPTv2Imports/EPPTv2TidakFinalManual.jsx'
 import EPPTv2TidakFinalAuto from './../routes/EPPTv2Imports/EPPTv2TidakFinalAuto.jsx'
-
+import EPPTv2A2 from './../routes/EPPTv2Imports/EPPTv2A2.jsx'
+import EPPTv2A1 from './../routes/EPPTv2Imports/EPPTv2A1.jsx'
 
 class Routes extends React.Component {
    render() {
@@ -55,6 +56,8 @@ class Routes extends React.Component {
                 <Route exact path="/modules/epptv2/csv/satu_masa" component={EPPTv2SatuMasa} />
                 <Route exact path="/modules/epptv2/csv/tidak_final_manual" component={EPPTv2TidakFinalManual} />
                 <Route exact path="/modules/epptv2/csv/tidak_final_auto" component={EPPTv2TidakFinalAuto} />
+                <Route exact path="/modules/epptv2/csv/a2" component={EPPTv2A2} />
+                <Route exact path="/modules/epptv2/csv/a1" component={EPPTv2A1} />
               </div>
             </div>
           </div>

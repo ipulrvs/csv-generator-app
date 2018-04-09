@@ -68,11 +68,11 @@ function SidebarReducer(state = {
 							name: 'Pasal 21 Final Auto'
 						},
 						{
-							url : '/',
+							url : '/modules/epptv2/csv/a1',
 							name: 'Pasal 21 A1'
 						},
 						{
-							url : '/',
+							url : '/modules/epptv2/csv/a2',
 							name: 'Pasal 21 A2'
 						},
 						{
