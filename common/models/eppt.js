@@ -72,7 +72,7 @@ module.exports = function(Eppt) {
 			});
 	}
 
-	Eppt.generateFinalManual = async (filename, size, delimiter, npwp_profile, cb) => {
+	Eppt.generateFinalManual = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -108,7 +108,13 @@ module.exports = function(Eppt) {
 				fake  		= dummies[faker]
 			}
 			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			if(month){
+				masa = month
+			}
 			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			if(year){
+				tahun = year
+			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
 			var bp 			= "1.4-"+masa+"."+tahun+"-"+bpr
@@ -176,12 +182,14 @@ module.exports = function(Eppt) {
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
 			{arg: 'delimiter', type: 'string'},
-			{arg: 'npwp', type: 'string'}
+			{arg: 'npwp', type: 'string'},
+			{arg: 'month', type: 'string'},
+			{arg: 'year', type: 'string'}
 		],
 		returns: {arg: 'res', type: 'json'}
 	});
 
-	Eppt.generateFinalAuto = async (filename, size, delimiter, npwp_profile, cb) => {
+	Eppt.generateFinalAuto = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -216,7 +224,13 @@ module.exports = function(Eppt) {
 				fake  		= dummies[faker]
 			}
 			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			if(month){
+				masa = month
+			}
 			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			if(year){
+				tahun = year
+			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
 			var bp 			= "1.4-"+masa+"."+tahun+"-"+bpr
@@ -282,12 +296,14 @@ module.exports = function(Eppt) {
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
 			{arg: 'delimiter', type: 'string'},
-			{arg: 'npwp', type: 'string'}
+			{arg: 'npwp', type: 'string'},
+			{arg: 'month', type: 'string'},
+			{arg: 'year', type: 'string'}
 		],
 		returns: {arg: 'res', type: 'json'}
 	});
 
-	Eppt.generateDaftarBiaya = async (filename, size, delimiter, npwp_profile, cb) => {
+	Eppt.generateDaftarBiaya = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -360,12 +376,14 @@ module.exports = function(Eppt) {
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
 			{arg: 'delimiter', type: 'string'},
-			{arg: 'npwp', type: 'string'}
+			{arg: 'npwp', type: 'string'},
+			{arg: 'month', type: 'string'},
+			{arg: 'year', type: 'string'}
 		],
 		returns: {arg: 'res', type: 'json'}
 	});
 
-	Eppt.generateSsp = async (filename, size, delimiter, npwp_profile, cb) => {
+	Eppt.generateSsp = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -394,7 +412,13 @@ module.exports = function(Eppt) {
 				fake  		= dummies[faker]
 			}
 			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			if(month){
+				masa = month
+			}
 			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			if(year){
+				tahun = year
+			}
 			var pembetulan 	= 0;
 			var ntpns 		= [
 				"1111111111111111",
@@ -467,12 +491,14 @@ module.exports = function(Eppt) {
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
 			{arg: 'delimiter', type: 'string'},
-			{arg: 'npwp', type: 'string'}
+			{arg: 'npwp', type: 'string'},
+			{arg: 'month', type: 'string'},
+			{arg: 'year', type: 'string'}
 		],
 		returns: {arg: 'res', type: 'json'}
 	});
 
-	Eppt.generateSatuMasa = async (filename, size, delimiter, npwp_profile, cb) => {
+	Eppt.generateSatuMasa = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -502,7 +528,13 @@ module.exports = function(Eppt) {
 				fake  		= dummies[faker]
 			}
 			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			if(month){
+				masa = month
+			}
 			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			if(year){
+				tahun = year
+			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
 			var npwps 		= [
@@ -556,12 +588,14 @@ module.exports = function(Eppt) {
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
 			{arg: 'delimiter', type: 'string'},
-			{arg: 'npwp', type: 'string'}
+			{arg: 'npwp', type: 'string'},
+			{arg: 'month', type: 'string'},
+			{arg: 'year', type: 'string'}
 		],
 		returns: {arg: 'res', type: 'json'}
 	});
 
-	Eppt.generateTidakFinalManual = async (filename, size, delimiter, npwp_profile, cb) => {
+	Eppt.generateTidakFinalManual = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -599,7 +633,13 @@ module.exports = function(Eppt) {
 				fake  		= dummies[faker]
 			}
 			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			if(month){
+				masa = month
+			}
 			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			if(year){
+				tahun = year
+			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
 			var bp 			= "1.3-"+masa+"."+tahun+"-"+bpr
@@ -685,12 +725,14 @@ module.exports = function(Eppt) {
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
 			{arg: 'delimiter', type: 'string'},
-			{arg: 'npwp', type: 'string'}
+			{arg: 'npwp', type: 'string'},
+			{arg: 'month', type: 'string'},
+			{arg: 'year', type: 'string'}
 		],
 		returns: {arg: 'res', type: 'json'}
 	});
 
-	Eppt.generateTidakFinalAuto = async (filename, size, delimiter, npwp_profile, cb) => {
+	Eppt.generateTidakFinalAuto = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -732,7 +774,13 @@ module.exports = function(Eppt) {
 				fake  		= dummies[faker]
 			}
 			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			if(month){
+				masa = month
+			}
 			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			if(year){
+				tahun = year
+			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
 			var bp 			= "1.3-"+masa+"."+tahun+"-"+bpr
@@ -826,12 +874,14 @@ module.exports = function(Eppt) {
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
 			{arg: 'delimiter', type: 'string'},
-			{arg: 'npwp', type: 'string'}
+			{arg: 'npwp', type: 'string'},
+			{arg: 'month', type: 'string'},
+			{arg: 'year', type: 'string'}
 		],
 		returns: {arg: 'res', type: 'json'}
 	});
 
-	Eppt.generateA2 = async (filename, size, delimiter, npwp_profile, cb) => {
+	Eppt.generateA2 = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -898,7 +948,13 @@ module.exports = function(Eppt) {
 				fake  		= dummies[faker]
 			}
 			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			if(month){
+				masa = month
+			}
 			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			if(year){
+				tahun = year
+			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
 			var bp 			= "1.2-"+masa+"."+tahun+"-"+bpr
@@ -1037,12 +1093,14 @@ module.exports = function(Eppt) {
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
 			{arg: 'delimiter', type: 'string'},
-			{arg: 'npwp', type: 'string'}
+			{arg: 'npwp', type: 'string'},
+			{arg: 'month', type: 'string'},
+			{arg: 'year', type: 'string'}
 		],
 		returns: {arg: 'res', type: 'json'}
 	});
 
-	Eppt.generateA1 = async (filename, size, delimiter, npwp_profile, cb) => {
+	Eppt.generateA1 = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -1105,7 +1163,13 @@ module.exports = function(Eppt) {
 				fake  		= dummies[faker]
 			}
 			var masa 		= Math.floor(Math.random() * (12 - 1 + 1) + 1) + "";
+			if(month){
+				masa = month
+			}
 			var tahun 		= Math.floor(Math.random() * (2018 - 1945 + 1) + 1945);
+			if(year){
+				tahun = year
+			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
 			var bp 			= "1.2-"+masa+"."+tahun+"-"+bpr
@@ -1245,7 +1309,9 @@ module.exports = function(Eppt) {
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
 			{arg: 'delimiter', type: 'string'},
-			{arg: 'npwp', type: 'string'}
+			{arg: 'npwp', type: 'string'},
+			{arg: 'month', type: 'string'},
+			{arg: 'year', type: 'string'}
 		],
 		returns: {arg: 'res', type: 'json'}
 	});

@@ -29,7 +29,9 @@ export default class EPPTv2FinalAuto extends React.Component {
         filename: "",
         size: 0,
         delimiter: ",",
-        npwp: "000000000000000"
+        npwp: "000000000000000",
+        month: "",
+        year: ""
       }
     }
   }
@@ -61,7 +63,9 @@ export default class EPPTv2FinalAuto extends React.Component {
               size: 0,
               delimiter: ",",
               type: 0,
-              npwp: "000000000000000"
+              npwp: "000000000000000",
+              month: "",
+              year: ""
             }})
             resolve(true)
           })
@@ -115,9 +119,15 @@ export default class EPPTv2FinalAuto extends React.Component {
                   id="filename" label="Filename" name="filename" margin="normal" fullWidth={true} placeholder="Input filename if field empty will get random name" />
                 {this._addons()}
                 <TextField 
+                  onChange={this.handleForm.bind(this, "month")} value={this.state.form.month}
+                  id="month" label="Month" name="month" margin="normal" fullWidth={true} placeholder="Month" />
+                <TextField 
+                  onChange={this.handleForm.bind(this, "year")} value={this.state.form.year}
+                  id="year" label="Year" name="year" margin="normal" fullWidth={true} placeholder="Year" />
+                <TextField 
                   onChange={this.handleForm.bind(this, "size")} value={this.state.form.size}
                   id="totalData" type="number" label="Total Data" name="totalData" margin="normal" fullWidth={true} placeholder="Total Data will be generated" />
-                <div style={{paddingTop: 16, paddingBottom: 8}}>
+                  <div style={{paddingTop: 16, paddingBottom: 8}}>
                   <InputLabel htmlFor="delimiter">CSV Delimiter</InputLabel>
                   <Select
                     native={false}
