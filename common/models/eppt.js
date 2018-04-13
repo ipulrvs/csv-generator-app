@@ -117,7 +117,11 @@ module.exports = function(Eppt) {
 			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
-			var bp 			= "1.4-"+masa+"."+tahun+"-"+bpr
+			var bpt		    = masa
+			if(bpt.split("").length == 1){
+				bpt = "0"+bpt
+			}
+			var bp 			= "1.4-"+bpt+"."+tahun+"-"+bpr
 			var npwps 		= [
 				"719547416445000",
 				"000000000000000"
@@ -169,7 +173,7 @@ module.exports = function(Eppt) {
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Final_Manual" + filecode + ".csv";
 		if(filename){
-			var csvName = "Csv_Pasal_21_Final_Manual" + filename + "_" + filecode + ".csv";
+			var csvName = "Csv_Pasal_21_Final_Manual_" + filename + "_" + filecode + ".csv";
 		}
 		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
 		fs.writeFile(filesFolder, csv, function(err) {
@@ -231,9 +235,14 @@ module.exports = function(Eppt) {
 			if(year){
 				tahun = year
 			}
+			1/12/2017
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
-			var bp 			= "1.4-"+masa+"."+tahun+"-"+bpr
+			var bpt		    = masa
+			if(bpt.split("").length == 1){
+				bpt = "0"+bpt
+			}
+			var bp 			= "1.4-"+bpt+"."+tahun+"-"+bpr
 			var npwps 		= [
 				"719547416445000",
 				"000000000000000"
@@ -244,7 +253,7 @@ module.exports = function(Eppt) {
 			var nama   		= fake.name + "_" + bpr;
 			var alamat 		= fake.address + "_" + bpr;
 			var email 		= fake.email + "_" + bpr;
-			var kodePajaks  = ["21-401-1", "21-401-2", "21-402-1", "21-499-9"]
+			var kodePajaks  = ["21-401-01", "21-401-02", "21-402-01", "21-499-99"]
 			var kodePajakr  = Math.floor(Math.random() * (3 - 0 + 1) + 0);
 			var kodePajak 	= kodePajaks[kodePajakr]
 			var bruto		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
@@ -283,7 +292,7 @@ module.exports = function(Eppt) {
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Final_Manual" + filecode + ".csv";
 		if(filename){
-			var csvName = "Csv_Pasal_21_Final_Manual" + filename + "_" + filecode + ".csv";
+			var csvName = "Csv_Pasal_21_Final_Manual_" + filename + "_" + filecode + ".csv";
 		}
 		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
 		fs.writeFile(filesFolder, csv, function(err) {
@@ -363,7 +372,7 @@ module.exports = function(Eppt) {
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Daftar_Biaya" + filecode + ".csv";
 		if(filename){
-			var csvName = "Csv_Pasal_21_Daftar_Biaya" + filename + "_" + filecode + ".csv";
+			var csvName = "Csv_Pasal_21_Daftar_Biaya_" + filename + "_" + filecode + ".csv";
 		}
 		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
 		fs.writeFile(filesFolder, csv, function(err) {
@@ -478,7 +487,7 @@ module.exports = function(Eppt) {
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Ssp" + filecode + ".csv";
 		if(filename){
-			var csvName = "Csv_Pasal_21_Ssp" + filename + "_" + filecode + ".csv";
+			var csvName = "Csv_Pasal_21_Ssp_" + filename + "_" + filecode + ".csv";
 		}
 		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
 		fs.writeFile(filesFolder, csv, function(err) {
@@ -575,7 +584,7 @@ module.exports = function(Eppt) {
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Satu_Masa" + filecode + ".csv";
 		if(filename){
-			var csvName = "Csv_Pasal_21_Satu_Masa" + filename + "_" + filecode + ".csv";
+			var csvName = "Csv_Pasal_21_Satu_Masa_" + filename + "_" + filecode + ".csv";
 		}
 		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
 		fs.writeFile(filesFolder, csv, function(err) {
@@ -642,7 +651,11 @@ module.exports = function(Eppt) {
 			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
-			var bp 			= "1.3-"+masa+"."+tahun+"-"+bpr
+			var bpt		    = masa
+			if(bpt.split("").length == 1){
+				bpt = "0"+bpt
+			}
+			var bp 			= "1.3-"+bpt+"."+tahun+"-"+bpr
 			var npwps 		= [
 				"719547416445000",
 				"000000000000000"
@@ -656,13 +669,13 @@ module.exports = function(Eppt) {
 			var wpLuarNegeri= "N"
 			var kodeNegara  = ""
 			var kodePajaks  = [
-				"21-100-3",
-				"21-100-4",
-				"21-100-5",
-				"21-100-6",
-				"21-100-7",
-				"21-100-8",
-				"21-100-9",
+				"21-100-03",
+				"21-100-04",
+				"21-100-05",
+				"21-100-06",
+				"21-100-07",
+				"21-100-08",
+				"21-100-09",
 				"21-100-10",
 				"21-100-11",
 				"21-100-12",
@@ -712,7 +725,7 @@ module.exports = function(Eppt) {
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Tidak_Final_Manual" + filecode + ".csv";
 		if(filename){
-			var csvName = "Csv_Pasal_21_Tidak_Final_Manual" + filename + "_" + filecode + ".csv";
+			var csvName = "Csv_Pasal_21_Tidak_Final_Manual_" + filename + "_" + filecode + ".csv";
 		}
 		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
 		fs.writeFile(filesFolder, csv, function(err) {
@@ -783,7 +796,11 @@ module.exports = function(Eppt) {
 			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
-			var bp 			= "1.3-"+masa+"."+tahun+"-"+bpr
+			var bpt		    = masa
+			if(bpt.split("").length == 1){
+				bpt = "0"+bpt
+			}
+			var bp 			= "1.3-"+bpt+"."+tahun+"-"+bpr
 			var npwps 		= [
 				"719547416445000",
 				"000000000000000"
@@ -797,13 +814,13 @@ module.exports = function(Eppt) {
 			var wpLuarNegeri= "N"
 			var kodeNegara  = ""
 			var kodePajaks  = [
-				"21-100-3",
-				"21-100-4",
-				"21-100-5",
-				"21-100-6",
-				"21-100-7",
-				"21-100-8",
-				"21-100-9",
+				"21-100-03",
+				"21-100-04",
+				"21-100-05",
+				"21-100-06",
+				"21-100-07",
+				"21-100-08",
+				"21-100-09",
 				"21-100-10",
 				"21-100-11",
 				"21-100-12",
@@ -861,7 +878,7 @@ module.exports = function(Eppt) {
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Tidak_Final_Auto" + filecode + ".csv";
 		if(filename){
-			var csvName = "Csv_Pasal_21_Tidak_Final_Auto" + filename + "_" + filecode + ".csv";
+			var csvName = "Csv_Pasal_21_Tidak_Final_Auto_" + filename + "_" + filecode + ".csv";
 		}
 		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
 		fs.writeFile(filesFolder, csv, function(err) {
@@ -957,7 +974,11 @@ module.exports = function(Eppt) {
 			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
-			var bp 			= "1.2-"+masa+"."+tahun+"-"+bpr
+			var bpt		    = masa
+			if(bpt.split("").length == 1){
+				bpt = "0"+bpt
+			}
+			var bp 			= "1.2-"+bpt+"."+tahun+"-"+bpr
 			var awal 		= "1"
 			var akhir		= "12"
 			var npwps 		= [
@@ -1080,7 +1101,7 @@ module.exports = function(Eppt) {
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_A2" + filecode + ".csv";
 		if(filename){
-			var csvName = "Csv_Pasal_21_A2" + filename + "_" + filecode + ".csv";
+			var csvName = "Csv_Pasal_21_A2_" + filename + "_" + filecode + ".csv";
 		}
 		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
 		fs.writeFile(filesFolder, csv, function(err) {
@@ -1172,7 +1193,11 @@ module.exports = function(Eppt) {
 			}
 			var pembetulan 	= 0;
 			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
-			var bp 			= "1.2-"+masa+"."+tahun+"-"+bpr
+			var bpt		    = masa
+			if(bpt.split("").length == 1){
+				bpt = "0"+bpt
+			}
+			var bp 			= "1.2-"+bpt+"."+tahun+"-"+bpr
 			var awal 		= "1"
 			var akhir		= "12"
 			var npwps 		= [
@@ -1296,7 +1321,7 @@ module.exports = function(Eppt) {
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_A2" + filecode + ".csv";
 		if(filename){
-			var csvName = "Csv_Pasal_21_A2" + filename + "_" + filecode + ".csv";
+			var csvName = "Csv_Pasal_21_A2_" + filename + "_" + filecode + ".csv";
 		}
 		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
 		fs.writeFile(filesFolder, csv, function(err) {
