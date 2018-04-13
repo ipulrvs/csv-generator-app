@@ -165,7 +165,7 @@ module.exports = function(Eppt) {
 			console.log("[Counter] generate row number = ", counter);
 			counter++;
 		}
-		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter, quotes: ''});
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Final_Manual" + filecode + ".csv";
 		if(filename){
@@ -279,7 +279,7 @@ module.exports = function(Eppt) {
 			console.log("[Counter] generate row number = ", counter);
 			counter++;
 		}
-		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter, quotes: '' });
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Final_Manual" + filecode + ".csv";
 		if(filename){
@@ -359,7 +359,7 @@ module.exports = function(Eppt) {
 			console.log("[Counter] generate row number = ", counter);
 			counter++;
 		}
-		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter, quotes: '' });
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Daftar_Biaya" + filecode + ".csv";
 		if(filename){
@@ -474,7 +474,7 @@ module.exports = function(Eppt) {
 			console.log("[Counter] generate row number = ", counter);
 			counter++;
 		}
-		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter, quotes: '' });
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Ssp" + filecode + ".csv";
 		if(filename){
@@ -571,7 +571,7 @@ module.exports = function(Eppt) {
 			console.log("[Counter] generate row number = ", counter);
 			counter++;
 		}
-		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter, quotes: '' });
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Satu_Masa" + filecode + ".csv";
 		if(filename){
@@ -708,7 +708,7 @@ module.exports = function(Eppt) {
 			console.log("[Counter] generate row number = ", counter);
 			counter++;
 		}
-		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter, quotes: '' });
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Tidak_Final_Manual" + filecode + ".csv";
 		if(filename){
@@ -857,7 +857,7 @@ module.exports = function(Eppt) {
 			console.log("[Counter] generate row number = ", counter);
 			counter++;
 		}
-		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter, quotes: '' });
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_Tidak_Final_Auto" + filecode + ".csv";
 		if(filename){
@@ -1076,7 +1076,7 @@ module.exports = function(Eppt) {
 			console.log("[Counter] generate row number = ", counter);
 			counter++;
 		}
-		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter, quotes: '' });
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_A2" + filecode + ".csv";
 		if(filename){
@@ -1292,7 +1292,7 @@ module.exports = function(Eppt) {
 			console.log("[Counter] generate row number = ", counter);
 			counter++;
 		}
-		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter });
+		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter, quotes: '' });
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
 		var csvName = "Csv_Pasal_21_A2" + filecode + ".csv";
 		if(filename){
