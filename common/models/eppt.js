@@ -72,7 +72,7 @@ module.exports = function(Eppt) {
 			});
 	}
 
-	Eppt.generateFinalManual = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
+	Eppt.generateFinalAuto = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -116,12 +116,12 @@ module.exports = function(Eppt) {
 				tahun = year
 			}
 			var pembetulan 	= 0;
-			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1000000 + 1) + 1000000);
 			var bpt		    = masa
 			if(bpt.split("").length == 1){
 				bpt = "0"+bpt
 			}
-			var bp 			= "1.4-"+bpt+"."+tahun+"-"+bpr
+			var bp 			= "1.4-"+bpt+"."+tahun.slice(2,4)+"-"+bpr
 			var npwps 		= [
 				"719547416445000",
 				"000000000000000"
@@ -132,11 +132,11 @@ module.exports = function(Eppt) {
 			var nama   		= fake.name + "_" + bpr;
 			var alamat 		= fake.address + "_" + bpr;
 			var email 		= fake.email + "_" + bpr;
-			var kodePajaks  = ["21-401-1", "21-401-2", "21-402-1", "21-499-9"]
+			var kodePajaks  = ["21-401-01", "21-401-02", "21-402-01", "21-499-99"]
 			var kodePajakr  = Math.floor(Math.random() * (3 - 0 + 1) + 0);
 			var kodePajak 	= kodePajaks[kodePajakr]
 			var tarif		= 5
-			var golongan 	= ""
+			var golongan 	= "I-IV"
 			var bruto		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
 			var npwpProfil	= npwp_profile
 			var mastTgl		= masa
@@ -181,7 +181,7 @@ module.exports = function(Eppt) {
 		});
 		return cb(null, "ok")
 	}
-	Eppt.remoteMethod('generateFinalManual', {
+	Eppt.remoteMethod('generateFinalAuto', {
 		accepts: [
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
@@ -193,7 +193,7 @@ module.exports = function(Eppt) {
 		returns: {arg: 'res', type: 'json'}
 	});
 
-	Eppt.generateFinalAuto = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
+	Eppt.generateFinalManual = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -235,14 +235,13 @@ module.exports = function(Eppt) {
 			if(year){
 				tahun = year
 			}
-			1/12/2017
 			var pembetulan 	= 0;
-			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1000000 + 1) + 1000000);
 			var bpt		    = masa
 			if(bpt.split("").length == 1){
 				bpt = "0"+bpt
 			}
-			var bp 			= "1.4-"+bpt+"."+tahun+"-"+bpr
+			var bp 			= "1.4-"+bpt+"."+tahun.slice(2,4)+"-"+bpr
 			var npwps 		= [
 				"719547416445000",
 				"000000000000000"
@@ -300,7 +299,7 @@ module.exports = function(Eppt) {
 		});
 		return cb(null, "ok")
 	}
-	Eppt.remoteMethod('generateFinalAuto', {
+	Eppt.remoteMethod('generateFinalManual', {
 		accepts: [
 			{arg: 'filename', type: 'string'},
 			{arg: 'size', type: 'integer'},
@@ -429,15 +428,7 @@ module.exports = function(Eppt) {
 				tahun = year
 			}
 			var pembetulan 	= 0;
-			var ntpns 		= [
-				"1111111111111111",
-				"2222222222222222",
-				"3333333333333333",
-				"4444444444444444",
-				"5555555555555555",
-			]
-			var nptnr 		= Math.floor(Math.random() * (4 - 0 + 1) + 0);
-			var ntpn 		= ntpns[nptnr];
+			var ntpn 		= Math.floor(Math.random() * (9999999999999999 - 1000000000000000 + 1) + 1000000000000000);
 			var tgl 		= fake.date
 			var jumlah		= Math.floor(Math.random() * (1000000000000 - 1 + 1) + 1);
 			var kaps 		= [
@@ -447,19 +438,15 @@ module.exports = function(Eppt) {
 			var kapr 		= Math.floor(Math.random() * (1 - 0 + 1) + 0) + "";
 			var kap			= kaps[kapr]
 			var kjss		= [
-				"101",
-				"104",
+				"100",
 				"401",
 				"402"
 			]
-			var kjsr		= Math.floor(Math.random() * (3 - 0 + 1) + 0) + "";
+			var kjsr		= Math.floor(Math.random() * (2 - 0 + 1) + 0) + "";
 			var kjs			= kjss[kjsr]
-			var kjss		= [
-				"101",
-				"104",
-				"401",
-				"402"
-			]
+			if(kap == "411127"){
+				kjs = "104"
+			}
 			var kodes 		= [
 				"0",
 				"1",
@@ -545,7 +532,7 @@ module.exports = function(Eppt) {
 				tahun = year
 			}
 			var pembetulan 	= 0;
-			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1000000 + 1) + 1000000);
 			var npwps 		= [
 				"719547416445000",
 				"000000000000000"
@@ -650,12 +637,12 @@ module.exports = function(Eppt) {
 				tahun = year
 			}
 			var pembetulan 	= 0;
-			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1000000 + 1) + 1000000);
 			var bpt		    = masa
 			if(bpt.split("").length == 1){
 				bpt = "0"+bpt
 			}
-			var bp 			= "1.3-"+bpt+"."+tahun+"-"+bpr
+			var bp 			= "1.3-"+bpt+"."+tahun.slice(2,4)+"-"+bpr
 			var npwps 		= [
 				"719547416445000",
 				"000000000000000"
@@ -763,7 +750,7 @@ module.exports = function(Eppt) {
 			"Kode Negara",
 			"Kode Pajak",
 			"Tipe Penghasilan", 
-			"Dipotong",
+			"Dipotong Oleh",
 			"Cara Pembayaran",
 			"Status PTKP",
 			"Jumlah Tanggungan",
@@ -795,12 +782,12 @@ module.exports = function(Eppt) {
 				tahun = year
 			}
 			var pembetulan 	= 0;
-			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1000000 + 1) + 1000000);
 			var bpt		    = masa
 			if(bpt.split("").length == 1){
 				bpt = "0"+bpt
 			}
-			var bp 			= "1.3-"+bpt+"."+tahun+"-"+bpr
+			var bp 			= "1.3-"+bpt+"."+tahun.slice(2,4)+"-"+bpr
 			var npwps 		= [
 				"719547416445000",
 				"000000000000000"
@@ -830,8 +817,13 @@ module.exports = function(Eppt) {
 			]
 			var kodePajakr  = Math.floor(Math.random() * (12 - 0 + 1) + 0);
 			var kodePajak 	= kodePajaks[kodePajakr]
-			var tipeP		= ""
-			var dipotong	= ""
+			var tipeP		= "B"
+			var dipotongs 		= [
+				"SPK",
+				"LSPK"
+			]
+			var dipotongr 		= Math.floor(Math.random() * (1 - 0 + 1) + 0);
+			var dipotong 		= dipotongs[dipotongr];
 			var caraBayar	= "B"
 			var ptkp		= "K"
 			var jtangungan  = "1"
@@ -898,7 +890,7 @@ module.exports = function(Eppt) {
 		returns: {arg: 'res', type: 'json'}
 	});
 
-	Eppt.generateA2 = async (filename, size, delimiter, npwp_profile, month, year, cb) => {
+	Eppt.generateA2 = async (filename, size, delimiter, npwp_profile, month, year, nama_profile, cb) => {
 		var fakeDB = Eppt.app.models.FakeDB;
 		var dummies = await fakeDB.find({})
 		var generate = size;
@@ -948,6 +940,7 @@ module.exports = function(Eppt) {
 			"Jumlah 23a",
 			"Jumlah 23b",
 			"Status Pindah",
+			"Nama Pemotong",
 			"Npwp Pemotong",
 			"Tanggal Bukti Potong",
 			"Referensi"
@@ -973,12 +966,12 @@ module.exports = function(Eppt) {
 				tahun = year
 			}
 			var pembetulan 	= 0;
-			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1000000 + 1) + 1000000);
 			var bpt		    = masa
 			if(bpt.split("").length == 1){
 				bpt = "0"+bpt
 			}
-			var bp 			= "1.2-"+bpt+"."+tahun+"-"+bpr
+			var bp 			= "1.2-"+bpt+"."+tahun.slice(2,4)+"-"+bpr
 			var awal 		= "1"
 			var akhir		= "12"
 			var npwps 		= [
@@ -990,15 +983,15 @@ module.exports = function(Eppt) {
 			var nip 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
 			var nik 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
 			var nama   		= fake.name + "_" + bpr;
-			var golongan	= ""
-			var pangkat		= ""
+			var golongan	= "Ia"
+			var pangkat		= "Juru MUda"
 			var alamat 		= fake.address + "_" + bpr;
 			var email 		= fake.email + "_" + bpr;
 			var kelamins	= ["L", "P"]
 			var kelaminr	=  Math.floor(Math.random() * (1 - 0 + 1) + 0);
 			var kelamin		= kelamins[kelaminr];
-			var ptkps		= ["TK", "K", "K/I", "HB"]
-			var ptkpr		= Math.floor(Math.random() * (3 - 0 + 1) + 0);
+			var ptkps		= ["TK", "K", "K/I"]
+			var ptkpr		= Math.floor(Math.random() * (2 - 0 + 1) + 0);
 			var ptkp		= ptkps[ptkpr]
 			var tanggungans = ["0", "1", "2", "3"]
 			var tanggunganr = Math.floor(Math.random() * (3 - 0 + 1) + 0);
@@ -1089,6 +1082,7 @@ module.exports = function(Eppt) {
 				jumlah23a,
 				jumlah23b,
 				pindah,
+				nama_profile,
 				npwpProfil,
 				tglBp,
 				ref
@@ -1192,12 +1186,12 @@ module.exports = function(Eppt) {
 				tahun = year
 			}
 			var pembetulan 	= 0;
-			var bpr 		= Math.floor(Math.random() * (9999999 - 1 + 1) + 1);
+			var bpr 		= Math.floor(Math.random() * (9999999 - 1000000 + 1) + 1000000);
 			var bpt		    = masa
 			if(bpt.split("").length == 1){
 				bpt = "0"+bpt
 			}
-			var bp 			= "1.2-"+bpt+"."+tahun+"-"+bpr
+			var bp 			= "1.1-"+bpt+"."+tahun.slice(2,4)+"-"+bpr
 			var awal 		= "1"
 			var akhir		= "12"
 			var npwps 		= [
@@ -1216,8 +1210,8 @@ module.exports = function(Eppt) {
 			var kelamins	= ["L", "P"]
 			var kelaminr	=  Math.floor(Math.random() * (1 - 0 + 1) + 0);
 			var kelamin		= kelamins[kelaminr];
-			var ptkps		= ["TK", "K", "K/I", "HB"]
-			var ptkpr		= Math.floor(Math.random() * (3 - 0 + 1) + 0);
+			var ptkps		= ["TK", "K", "K/I"]
+			var ptkpr		= Math.floor(Math.random() * (2 - 0 + 1) + 0);
 			var ptkp		= ptkps[ptkpr]
 			var tanggungans = ["0", "1", "2", "3"]
 			var tanggunganr = Math.floor(Math.random() * (3 - 0 + 1) + 0);
@@ -1261,7 +1255,7 @@ module.exports = function(Eppt) {
 			var calculateOtomatis = "N"
 			var jabatan = ""
 			var kodeNegara = ""
-			var wpLuarNegeri = ""
+			var wpLuarNegeri = "N"
 			if(mastTgl.split("").length == 1){
 				mastTgl = "0"+mastTgl
 			}
@@ -1319,9 +1313,9 @@ module.exports = function(Eppt) {
 		}
 		var csv = json2csv({ data: bigdata, hasCSVColumnTitle: false, del: delimiter, quotes: '' });
 		var filecode = Math.floor(Math.random() * 1000000000000) + "";
-		var csvName = "Csv_Pasal_21_A2" + filecode + ".csv";
+		var csvName = "Csv_Pasal_21_A1" + filecode + ".csv";
 		if(filename){
-			var csvName = "Csv_Pasal_21_A2_" + filename + "_" + filecode + ".csv";
+			var csvName = "Csv_Pasal_21_A1_" + filename + "_" + filecode + ".csv";
 		}
 		var filesFolder = path.join(__dirname, "..", "..", "client", "files", csvName)
 		fs.writeFile(filesFolder, csv, function(err) {
@@ -1336,7 +1330,8 @@ module.exports = function(Eppt) {
 			{arg: 'delimiter', type: 'string'},
 			{arg: 'npwp', type: 'string'},
 			{arg: 'month', type: 'string'},
-			{arg: 'year', type: 'string'}
+			{arg: 'year', type: 'string'},
+			{arg: 'nama', type: 'string'}
 		],
 		returns: {arg: 'res', type: 'json'}
 	});
